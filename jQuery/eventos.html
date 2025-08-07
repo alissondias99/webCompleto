@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery</title>
+
+	<style>
+		#divExterna {
+			background-color: gray;
+			width: 80px;
+			height: 80px;
+			padding: 70px;
+		}
+
+		#divInterna {
+			background-color: rgb(159, 112, 112);
+			width: 80px;
+			height: 80px;
+		}
+
+		.InputFocado{
+			background-color: red;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script>
+
+		$(document).ready(() => {
+			$('#onload').html("Página carregada")
+
+			$(window).scroll(() => {
+				$('#scroll').html('Rolou a página')
+			})
+
+			$(window).resize(() => {
+				$('#resize').html('O tamanho da página mudou').css('background-color', 'red')
+			})
+
+			/*$('#div1').scroll(function(){
+				$(this).css('background-color', 'blue') // this é usado para referenciar o proprio objeto que foi capturado no primeiro seletor
+			})*/
+
+			$('#div1').scroll(e => { // e é um parametro que representa o evento que ocorre sobre o objeto
+				// $(this).css('background-color', 'blue') não funciona com arrow function
+				console.log(e)
+				$(e.target).css('background-color', 'blue') //.target é um metodo do jQuery que recebe o parametro e, e permite manipular o objeto associado a e
+			})
+
+			//evetos de mouse
+			$('#btn1').mousedown(() => {
+				$('#div2').css('background-color', 'green')
+			})
+
+			$('#btn1').mouseup(() => {
+				$('#div2').css('background-color', 'purple')
+			})
+
+			$('#btn2').dblclick(() => {
+				$('#div2').css('background-color', 'black')
+			})
+
+			$('#div2').mousemove((e) => {
+				console.log(e.offsetX, e.offsetY) // captura a posição do mouse dentro do elemento em questão
+				$('#resultadoDiv').html(e.offsetX + ' ' + e.offsetY)
+			})
+
+			/*
+			$('#divExterna').mouseenter(() => {
+				$('#resultadoDivExterna').html("Entrou")
+			})
+
+			$('#divExterna').mouseover(() => {
+				$('#resultadoDivExterna').html("Entrou")
+			})
+			// ↑ Entrada: funcionam da mesma maneira ↑
+
+			// ↓ Saida: funcionam da mesma maneira ↓
+
+			$('#divExterna').mouseleave(() => {
+				$('#resultadoDivExterna').html("Saiu")
+			})
+
+			$('#divExterna').mouseout(() => {
+				$('#resultadoDivExterna').html("Saiu")
+			})
+			*/
+			
+			/*
+			$('#divExterna').mouseover((e) => {
+				console.log(' mouseover div externa (entrou)')
+				$('#resultadoDivExterna').html("Entrou")
+			})
+
+			$('#divExterna').mouseout((e) => {
+				console.log('mouseout div externa (saiu)')
+				$('#resultadoDivExterna').html("Saiu")
+			})
+
+			$('#divInterna').mouseover((e) => {
+				console.log('mouseover div interna (entrou)')
+				$('#resultadoDivInterna').html("Entrou")
+			})
+
+			$('#divInterna').mouseout((e) => {
+				console.log('mouseout div interna (saiu)')
+				$('#resultadoDivInterna').html("Saiu")
+			}) 
+			*/
+			// veja o resultado no console do navegador
+			// efeito booble (borbulhamento), mouseover e mouseout são métodos mais antigos, nesse caso para o método do elemento filho ser executado, os métodos do elemento pai também devem ser executados antes, então toda vez um métodos da divInterna for executado, todos os métodos da divExterna serão executados antes
+
+			$('#divExterna').mouseenter(() => {
+				console.log('div externa (entrou)')
+				$('#resultadoDivExterna').html("Entrou")
+			})
+
+			$('#divExterna').mouseleave(() => {
+				console.log('div externa (saiu)')
+				$('#resultadoDivExterna').html("Saiu")
+			})
+
+			$('#divInterna').mouseenter(() => {
+				console.log('div interna (entrou)')
+				$('#resultadoDivInterna').html("Entrou")
+			})
+
+			$('#divInterna').mouseleave(() => {
+				console.log('div interna (saiu)')
+				$('#resultadoDivInterna').html("Saiu")
+			})
+
+			//eventos do teclado
+			$('#teclado').keydown((e) =>{
+				console.log(e.keyCode) // captura o codigo da teclado pressionada e exebe no console
+			})
+
+			/*$('#teclado').keyup((e) =>{
+				console.log('tecla liberada')
+				$('#resultadoTecla').html('tecla liberada')
+
+					if(e.keyCode == 13){
+						let txt = $(e.target).val()
+						$('#resultadoTecla').html(txt)
+						// captura o texto digitado no input com id teclado e passe esse texto como conteudo no span com id resultadoTecla
+					}
+			})*/
+
+			$("#nome").focus((e) =>{
+				console.log('Esse elemento recebeu o foco (nome)')
+				$(e.target).addClass('InputFocado')
+			})
+
+			$("#email").focus((e) =>{
+				console.log('Esse elemento recebeu o foco (email)')
+				$(e.target).addClass('InputFocado')
+
+			})
+
+			$("#nome").blur((e) =>{
+				console.log('Esse elemento perdeu o foco (nome)')
+				$(e.target).removeClass('InputFocado')// mais de uma classe pode ser passada por vez se necessario
+
+			})
+
+			$("#email").blur((e) =>{
+				console.log('Esse elemento perdeu o foco (email)')
+				$(e.target).removeClass()// sem passar nenhum parametro todas as classe serão removidas
+				
+			})
+			
+			$('#opcao').change((e) =>{
+				console.log($(e.target).val())
+			})
+
+			$('#form').submit((e) =>{
+				e.preventDefault() // previne o evento padrão de acontecer, nesse caso, o envio do formulário
+				console.log('Enviado')
+			})
+		})
+	</script>
+</head>
+
+<body>
+
+	<div id="topo">
+		<h1>Eventos</h1>
+	</div>
+
+	<div>
+		<h3>Browser</h3>
+		<span id="onload">Onload: </span><span>?</span><br />
+		<span id="scroll">Scroll: </span><span>?</span><br />
+		<span id="resize">Resize: </span><span>?</span>
+		<div id="div1" style="height: 100px; width: 100px; border: solid 1px; overflow-y: scroll;">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+		</div>
+		<hr />
+
+		<h3>Mouse</h3>
+		<button id="btn1" type="button">Clique aqui</button>
+		<button id="btn2" type="button">Clique aqui 2x</button>
+		<div id="div2" style="background-color: red; width: 80px; height: 50px; margin-top: 10px; margin-bottom: 10px">
+		</div>
+		<span>Resultado do evento sobre a div</span> <span id="resultadoDiv"></span>
+		<hr />
+
+		<div id="divExterna">
+			<div id="divInterna"></div>
+		</div>
+		<span>Div externa:</span><span id="resultadoDivExterna"></span>
+		<br>
+		<span>Div interna:</span><span id="resultadoDivInterna"></span>
+		<hr>
+
+		<h3>Teclado</h3>
+		<span>Nome:</span>
+		<input id="teclado" type="text" />
+		<span id="resultadoTecla">Resultado do evento sobre o input</span>
+		<hr/>
+
+		<h3>Formulário</h3>
+		<form id="form">
+			<span>Nome:</span>
+			<input id="nome" type="text" />
+
+			<span>E-mail:</span>
+			<input id="email" type="text" />
+
+			<span>Motivo do contato:</span>
+			<select id="opcao">
+				<option value="">-- Selecione --</option>
+				<option value="duvida">Dúvida</option>
+				<option value="sugestao">Sugestão</option>
+			</select>
+
+			<button type="submit">Enviar</button>
+
+			<p>
+				Lorem ipsum dolor sit amet consectetur, adippisicing elit. Quidem, explicabo molestiae praesentium fuga
+				rerum dolorum culpa facere placeat, nam provident accusamus ad exercitationem porro mollitia, nostrum
+				atque earum. Mollitia laboriosam cum, sed quidem nesciunt culpa eveniet obcaecati temporibus numquam
+				similique labore saepe optio accusantium eius laudantium porro asperiores ad placeat atque tenetur neque
+				libero dolores tempora quaerat! Doloribus iste, eum officiis iusto sunt repellat? Eligendi laboriosam
+				consequatur et. Dolorum voluptatem soluta illum eum reiciendis vitae a beatae ut quidem corporis. Magnam
+				quibusdam deserunt fugiat deleniti, hic repudiandae vel non nisi sint, velit enim cupiditate odit
+				provident! Esse quis eum reprehenderit nemo voluptas dolore nobis repellat corporis, praesentium id
+				deleniti quasi, ipsa quisquam deserunt sint eos dolorem voluptates facere, adipisci explicabo laudantium
+				inventore. Et delectus aliquid eius quasi, cum tempore dicta veniam nisi odit. Totam, eveniet! Commodi
+				aliquid quaerat delectus culpa dolorum deserunt cumque ipsum facere necessitatibus beatae id veniam
+				dolore similique molestias atque illum officia omnis optio, dolor sed modi fugiat aut, provident magni?
+				Ea blanditiis ad cum dolore atque facilis, corrupti quas molestiae eius iure quo at vero laboriosam
+				neque pariatur, labore eaque eos harum consequuntur aut. Ratione assumenda vel doloremque molestias
+				laborum, repudiandae asperiores! Veniam aliquid in hic recusandae veritatis sapiente, adipisci vel vitae
+				facilis debitis dolore alias repellat eveniet saepe voluptate culpa fuga ex quos eos magni maiores
+				doloribus eum cum! Exercitationem, ullam expedita? Tempora quibusdam ab saepe iste necessitatibus
+				adipisci aperiam quasi, aspernatur quis vel eum. Reprehenderit eveniet consectetur nesciunt iusto
+				expedita eaque numquam harum pariatur quas quaerat ut facilis suscipit, laudantium aliquam, voluptatibus
+				cum esse, ex similique optio. Perferendis saepe quisquam exercitationem, voluptatum inventore facere.
+				Sint vero ea non dignissimos ad nihil alias molestiae ab similique animi minima magnam, iusto ipsum
+				maxime cum quidem explicabo iste odit excepturi recusandae tenetur placeat facere perspiciatis
+				obcaecati? Eaque quia autem quibusdam magni suscipit voluptate praesentium eveniet dolores pariatur ad,
+				architecto necessitatibus laudantium doloribus quas repellendus reiciendis reprehenderit? Aspernatur,
+				doloremque similique, hic, quam veniam est accusantium quaerat optio deserunt perferendis odit
+				laboriosam in vitae earum mollitia quidem asperiores repudiandae. Ex, beatae illo. Unde quis ratione
+				ipsam deleniti tempore ipsa aperiam. Repellat officia eos aspernatur fuga. Officiis, consequatur
+				impedit. Cupiditate ab, illo neque itaque id, quidem, molestias inventore animi soluta rem sint.
+				Explicabo quo facere consectetur, sint maxime saepe dicta voluptatibus fugiat inventore voluptatem natus
+				debitis architecto iste. Eos, voluptatem. Explicabo voluptatibus assumenda provident eum illum expedita
+				alias a necessitatibus voluptates eos. Commodi itaque, culpa at perferendis quam dolor quia asperiores
+				cum est? Non sint pariatur provident deleniti blanditiis voluptates officiis temporibus excepturi, sunt
+				corporis. Recusandae consequuntur, illum qui quaerat, et incidunt neque minima id ab quasi beatae illo
+				vero? Magnam, nostrum, fuga facilis itaque aliquid illo debitis repudiandae dolores provident amet
+				doloribus enim iste hic recusandae, consequatur facere eum modi esse quidem maiores! Voluptatum quos
+				impedit laboriosam, ut sequi eaque pariatur officia. Quas, laudantium facere minus quis beatae minima
+				recusandae nemo expedita delectus, similique quod numquam voluptas perferendis, neque nisi excepturi sit
+				sint autem fugiat? Quidem perspiciatis eligendi quae aperiam optio facere ex soluta autem ipsum ab quo
+				fuga voluptatem veniam mollitia voluptas rerum, esse eius pariatur ratione aspernatur ad tempora. Fuga
+				alias tempora totam delectus quis unde veritatis dolore cum voluptates adipisci ab illum a quo
+				laboriosam quod, vero neque. Id natus nisi aperiam provident corporis sequi amet aspernatur repellat
+				assumenda, ad ducimus totam aut quaerat? Animi alias reiciendis provident esse, possimus odio unde id
+				illo et fugit temporibus ea quas modi, magni, ad natus sapiente voluptas numquam. Pariatur rem impedit
+				ad rerum dolores! Ullam impedit nemo nobis repellendus commodi laborum iure quibusdam dolores in
+				molestias fugit vero enim esse voluptates, modi velit quidem quae totam pariatur eveniet aliquam cum
+				reprehenderit. Optio libero hic id. Porro unde voluptas eum accusamus earum sapiente ipsa accusantium
+				dolorem ea asperiores ratione tenetur quo quod distinctio, praesentium eius, magni omnis voluptate
+				adipisci, temporibus aut? Dolores perspiciatis delectus cum quod minima culpa consequatur autem aliquam
+				tempore, iusto rem, eligendi temporibus nihil quae sunt voluptate voluptatibus. Dicta consequuntur
+				corrupti qui laboriosam? Reprehenderit sed maiores, debitis totam incidunt non tenetur amet sequi
+				assumenda expedita ullam iure odit aperiam fuga vel necessitatibus quod quidem unde mollitia molestias
+				facilis et voluptatibus voluptas vero! Voluptas eum, esse necessitatibus dicta veniam optio fugiat
+				aspernatur adipisci consectetur blanditiis, tempora harum. Amet optio animi quibusdam? Iste, porro
+				atque. Id eos reprehenderit possimus reiciendis cupiditate maiores laborum voluptatum perferendis
+				molestias corporis delectus, aspernatur consectetur modi, magni asperiores assumenda numquam ipsam
+				accusantium sequi alias esse? Modi officiis, error earum ipsum itaque quasi ratione, placeat dignissimos
+				eveniet harum, cum hic perspiciatis. Exercitationem magnam cupiditate maiores neque tempora! Hic eius
+				accusantium libero quo corporis mollitia, exercitationem vitae fuga! Deleniti explicabo perferendis
+				fugit qui dignissimos cumque, cupiditate quisquam! Nesciunt provident aperiam neque repellendus ut! Fuga
+				soluta esse tempore tempora quo, debitis illum, quae expedita itaque commodi laudantium praesentium iste
+				modi ad quaerat magni ex! Ipsa cum dolorum dolore cumque nisi qui asperiores hic deserunt, voluptates
+				blanditiis voluptate magnam. Quod, placeat fugit maxime eum eos doloribus magnam ea nulla totam facilis
+				modi, enim fugiat commodi vitae, tenetur accusamus ab quo. Cupiditate architecto perspiciatis
+				dignissimos ipsum quis magni culpa. Eligendi porro earum sed harum adipisci illum. Hic dolore officia
+				debitis tempore, possimus, maxime id quaerat inventore ea perferendis est reiciendis velit voluptatibus,
+				quidem explicabo distinctio ex deleniti repellat. Beatae accusantium, ab optio unde porro, commodi sit
+				dolor fugit necessitatibus recusandae alias! Omnis illum quidem cupiditate maxime delectus fuga eaque
+				reprehenderit dolores, aliquid porro corporis pariatur amet? Numquam neque earum delectus beatae dolore
+				aliquid et tenetur voluptates aut! Laudantium, iste, quisquam doloremque ullam dolor similique
+				accusantium quaerat asperiores totam velit sit necessitatibus. Cupiditate, rem quibusdam quos sapiente,
+				doloribus nam ex soluta aliquid dolores quasi autem provident voluptas deleniti quaerat temporibus?
+				Deserunt fuga culpa ut est vitae quas maiores, dignissimos dolor voluptate dicta tempora inventore quasi
+				repellat saepe numquam accusantium quos nostrum corrupti iusto illo laudantium iste accusamus! Nemo
+				harum voluptas sunt culpa excepturi, quaerat tenetur rem incidunt, commodi reprehenderit facere
+				explicabo exercitationem magnam totam qui omnis, ullam fugit accusamus?
+			</p>
+		</form>
+	</div>
+</body>
+
+</html>

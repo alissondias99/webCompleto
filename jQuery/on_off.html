@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+    <style>
+        .inputDesfocado {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .InputFocado {
+            background-color: red;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(() => {
+
+            /*$("input").on('focus', e => {
+                $(e.target).removeClass('inputDesfocado')
+                $(e.target).addClass('InputFocado')
+
+            })
+
+            $("input").on('blur', e => {
+                $(e.target).removeClass('InputFocado')
+                $(e.target).addClass('inputDesfocado')
+
+            })*/
+
+            $('body').append('<br><br> <input type="text" class="inputDesfocado">') // não é afetado pelo script acima pois os eventos só são aplicados e elementos já criados pelo html
+
+            $("body").on('focus', 'input', e => { // seleciona o body para aplicar o eventos de foco e perda de foco sobre todos os elementos input
+                $(e.target).removeClass('inputDesfocado')
+                $(e.target).addClass('InputFocado')
+
+            })
+
+            $("body").on('blur', 'input', e => {
+                $(e.target).removeClass('InputFocado')
+                $(e.target).addClass('inputDesfocado')
+
+            })
+
+            $("body").off('blur', 'input') // remove todos os eventos blur sobre os elementos input dentro do body
+        })
+
+    </script>
+</head>
+<body>
+    <input type="text">
+</body>
+</html>

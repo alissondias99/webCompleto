@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery</title>
+	<style>
+		div {
+			width: 80px;
+			height: 80px;
+            background: rgb(17, 0, 255)   
+		}
+		
+	</style>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(() => {
+            $('#btn1').on('click', () =>{
+
+                $('div').animate({ // o animate só aceita valores numericos
+                    'width': '160px',
+                    'height': '160px',
+                    'margin-left': '200px',
+                    'margin-top': '200px',
+                }, //2000
+                {
+                    duration: 3500,
+                    start: () =>{
+                        console.log('animação foi iniciada')
+                    },
+
+                    complete: () =>{
+                        console.log('animação foi comcluida')
+                    }
+                }    
+            )
+
+            })
+		})
+	</script>
+</head>
+
+<body>
+
+		<button id="btn1" type="button">DIV 1</button>
+		<div>teste</div>
+
+
+</body>
+
+</html>

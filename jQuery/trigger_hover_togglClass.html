@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+    <style>
+        .Desfocado {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .Focado {
+            background-color: red;
+            width: 80px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $(document).ready(() => {
+
+            $("#btn2").on('click', ()=>{
+                alert('BTN2 clicado')
+            })
+
+            $("#btn1").on('click', ()=>{
+                $("#btn2").trigger('click')
+            })
+
+            $('div').hover(
+                e=> $(e.target).addClass('Focado'),
+                e=> $(e.target).removeClass('Focado')
+            )
+
+             $('div').toggleClass(e=> $(e.target).addClass('Focado')) // remove ou adiciona uma classe dependendo se ela já está ou não associada ao elementos
+                
+        })
+
+    </script>
+</head>
+<body>
+
+    <button id="btn1" type="button">BTN 1</button>
+    <button id="btn2" type="button">BTN 2</button>
+
+    <div class="focado">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur sit ea exercitationem, quaerat maiores eius dolorum eligendi nisi praesentium eos.
+    </div>
+</body>
+</html>

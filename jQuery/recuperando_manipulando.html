@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+            console.log($('img').attr('src')) // exibe no console do navegador o src da imagem (esfera_1.png)
+
+            $('img').attr('src', 'esfera_2.png') // muda o src da imagem assim mudando a imagem
+            $('img').attr('border', '20') // muda um atribudo da imagem assim mudando a imagem
+
+            $('#div1').html("O texto mudou")
+            $('#div1').html('<strong style="color:red"> O texto mudou de cor </strong>')
+
+            $.each($('.interesse:checked'), (indice, valor) => {
+                console.log(indice, valor.value)
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+
+    <img src="esfera_1.png" border='5'> <!--Define a imagem com esfera_1-->
+
+    <div id="div1" style="border:solid 1px #000; width: 150px; height: 150px">
+        <a href="#">teste</a>
+        <p>Esse é outro teste</p>
+        Texto
+        <div>Outro teste</div>
+    </div>
+
+    <p>Sexo:</p>
+    <input type="radio" name="sexo" class="sexo" value="f">Feminino<br />
+    <input type="radio" name="sexo" class="sexo" value="m">Masculino<br />
+    <br />
+
+    <p>Interesses:</p>
+    <input type="checkbox" name="interesse" class="interesse" value="php">PHP<br />
+    <input type="checkbox" name="interesse" class="interesse" value="js">JavaScript<br />
+    <input type="checkbox" name="interesse" class="interesse" value="angular">Angular<br />
+    <input type="checkbox" name="interesse" class="interesse" value="nodejs">NodeJS<br />
+</body>
+
+</html>

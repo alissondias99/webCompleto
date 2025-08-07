@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <h1 class="diversos2">Selecionando elementos parte 1</h1>
+
+		<div>Div 1</div>
+		<div class="diversos1">Div 2</div>
+
+		<ul id="menu1">
+			<li>Menu 1 - Item 1</li>
+			<li class="diversos1">Menu 1 - Item 2</li>
+			<li>Menu 1 - Item 3</li>
+		</ul>
+
+		<ul>
+			<li class="itemMenu2">Menu 2 - Item 1</li>
+			<li class="itemMenu2">Menu 2 - Item 2</li>
+			<li class="itemMenu2">Menu 2 - Item 3</li>
+		</ul>
+
+		<input type="text" placeholder="campo 1" />
+
+		<select class="diversos1">
+			<option>-- selecione uma opção --</option>
+			<option>opção 1</option>
+			<option>opção 2</option>
+		</select>
+
+		<br />
+
+		<img src="carro_selector_jq.jpg" class="diversos2" id="imagem" />
+</body>
+    <script>
+        //Opereador $ permite selecionar elementos e executar ações da lib jQuery 
+
+        // faça os teste de seleção no console do navegador depois de abrir esse arquivo
+        //$('tag')
+        $('div') // seleciona todas as div
+        $('ul')
+        $('li')
+
+        //$(.classe)
+        $('.itemMenu2') // seleciona todos os itens com a classe itemMenu2
+        $('.diversos2') 
+        $('li.diversos1') // seleciona apenas os elementos li com a classe diversos1
+
+        //$('#id')
+        $('#menu1') //seleciona o item com o id menu1
+
+        console.log($('.itemMenu2:first')) // retorna o primeiro elemento da seleção
+        console.log($('.itemMenu2:last')) // retorna o ultimo elemento da seleção
+        console.log($('.itemMenu2:even')) // retorna os elementos com indice pares
+        console.log($('.itemMenu2:odd')) // retorna os elementos com indice ímpares
+    </script>
+</html>
