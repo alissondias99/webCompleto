@@ -1,5 +1,7 @@
 <?php
 
+use \Psr\Http\Message\ServerRequestInterface as Request; // dados da requisição
+use \Psr\Http\Message\ResponseInterface as Response; // dados que serão respondidos ao usuário
 require "vendor/autoload.php";
 
 $app = new \Slim\App;
