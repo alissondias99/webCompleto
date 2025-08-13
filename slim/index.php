@@ -1,50 +1,39 @@
 <?php
 
-use \Psr\Http\Message\ServerRequestInterface as Request; // dados da requisição
-use \Psr\Http\Message\ResponseInterface as Response; // dados que serão respondidos ao usuário
-require "vendor/autoload.php";
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+require 'vendor/autoload.php';
 
-$app = new \Slim\App;
+$app = new \Slim\App([
+    'settings' => [
+        'displayErrorDetails' => true
+    ]
+]);
 
-$app->get('/postagens2', function () {
-    echo 'Lista postagens';
+//Container dependency injection
+class Servico{
+}
+
+$container = $app->getContainer();
+
+// Container pimple
+$container['servico'] = function(){
+
+    return  new Servico;
+};
+
+$app->get('/servico', function (Request $request, Response $response){
+   
+    $servico = $this->get('servico');
+    var_dump($servico);
 });
 
-$app->get('/users[/{id}]', function ($request, $response) {
-    $id = $request->getAttribute('id');
-    echo 'Lista usuarios ' . $id;
-});
+//Controllers como serviço
+$container = $app->getContainer();
+$container['Home'] = function(){
+    return new MyApp\controllers\Home( new MyApp\View);
+};
 
-$app->get('/postagens[/{ano}[/{mes}]]', function ($request, $response) {
-    $ano = $request->getAttribute('ano');
-    $mes = $request->getAttribute('mes');
-    echo 'Lista postagens ' .  ' Ano: ' . $ano . ' Mês: ' . $mes;
-});
-
-$app->get('/lista/{itens:.*}', function ($request, $response) {
-    $itens = $request->getAttribute('itens');
-    var_dump(explode("/", $itens)); // mostra que cada itens acresentado na url é retornado dentro de um array e pode ser tratado como tal
-});
-
-$app->get('/blog/postagens/{id}', function ($request, $response) {
-    $itens = $request->getAttribute('itens');
-    var_dump(explode("/", $itens)); // mostra que cada itens acresentado na url é retornado dentro de um array e pode ser tratado como tal
-})->setName('blog'); // define um nome para a rota para que seja mais facil reutilizar
-
-$app->get('/meusite', function ($request, $response) {
-    echo $retorno = $this->get("router")->pathFor("blog", ["id" => "5"]);
-});
-
-//agrupar rotas
-$app->group('/v5', function () {
-    $this->get('/postagens', function () {
-        echo 'Lista postagens';
-    });
-
-    $this->get('/users[/{id}]', function () {
-        echo 'Lista usuarios ';
-    });
-
-});
+$app->get('/usuarios', 'Home:index'); // aponte uma rota e define qual classe e metodo vai ser trabalhado
 
 $app->run();
