@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,EAAE;EACE,KAAK,EAHH,IAAI",
+"sources": ["../sass/arquivo.scss"],
+"names": [],
+"file": "arquivo.css"
+}
