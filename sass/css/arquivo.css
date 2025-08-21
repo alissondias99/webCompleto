@@ -1,4 +1,161 @@
+@charset "UTF-8";
+/*↓ aula 563 - 564 ↓*/
 h2 {
   color: #000; }
+
+/*Aninhamento*/
+#conteudo {
+  background-color: green; }
+  #conteudo h1 {
+    color: blue; }
+  #conteudo a {
+    color: red; }
+    #conteudo a:hover {
+      color: yellow; }
+
+body {
+  background-color: purple; }
+
+.vermelho {
+  color: red; }
+
+.item-1 {
+  background-color: green;
+  color: #3cff00; }
+
+.item-2 {
+  background-color: green;
+  color: #3cff00; }
+
+.item-3 {
+  background-color: green;
+  color: #3cff00; }
+
+.item-1 {
+  background-color: orange; }
+
+.item-2 {
+  background-color: orange; }
+
+.item-3 {
+  background-color: orange; }
+
+.item-1 {
+  background-color: green; }
+
+.item-2 {
+  background-color: yellow; }
+
+.item-3 {
+  background-color: red; }
+
+.col-1 {
+  width: 8.3333333333%;
+  background-color: aqua; }
+
+.col-2 {
+  width: 16.6666666667%;
+  background-color: aqua; }
+
+.col-3 {
+  width: 25%;
+  background-color: aqua; }
+
+.col-4 {
+  width: 33.3333333333%;
+  background-color: aqua; }
+
+.col-5 {
+  width: 41.6666666667%;
+  background-color: aqua; }
+
+.col-6 {
+  width: 50%;
+  background-color: aqua; }
+
+.col-7 {
+  width: 58.3333333333%;
+  background-color: aqua; }
+
+.col-8 {
+  width: 66.6666666667%;
+  background-color: aqua; }
+
+.col-9 {
+  width: 75%;
+  background-color: aqua; }
+
+.col-10 {
+  width: 83.3333333333%;
+  background-color: aqua; }
+
+.col-11 {
+  width: 91.6666666667%;
+  background-color: aqua; }
+
+.col-12 {
+  width: 100%;
+  background-color: aqua; }
+
+/*
+Outras Funções 
+mix(green,orange,50%)
+darken(orange,50%)
+lighten(orange,40%)
+*/
+.alerta {
+  background: white;
+  color: yellow; }
+
+.import {
+  font-size: 150px; }
+
+/*↑ aula 563 - 564 ↑*/
+/*↓ aula 565 ↓*/
+/*Mixin*/
+h1 {
+  color: green;
+  background: black;
+  padding: 10px 5px; }
+
+h2 {
+  color: white;
+  background: black;
+  padding: 10px 5px; }
+
+/*Herança*/
+/*Múltiplas diretivas*/
+.classe1, .vermelho {
+  color: red; }
+
+.classe2, .vermelho {
+  background: black; }
+
+/*
+Encadeamento de diretivas
+Placeholders(%)
+*/
+.erro {
+  color: red; }
+
+.erro {
+  background: black; }
+
+.erro {
+  padding: 10px;
+  border: 1px solid red; }
+
+/*Diretivas de controle*/
+p {
+  color: black; }
+
+/*Diretivas de controle e Mixins*/
+body {
+  background: white;
+  color: black; }
+
+/*
+50% gera um comentario no css com o resultado da conta
+*/
 
 /*# sourceMappingURL=arquivo.css.map */

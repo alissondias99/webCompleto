@@ -1,5 +1,196 @@
+/*↓ aula 563 - 564 ↓*/  
+
+
 $cor: #000;
 
-h2{
+h2 {
     color: $cor;
 }
+
+/*Aninhamento*/
+
+#conteudo {
+    background-color: green;
+
+    h1 {
+        color: blue;
+    }
+
+    a {
+        color: red;
+
+        &:hover {
+            // seletor pai
+            color: yellow;
+        }
+    }
+}
+
+$varivel_cor_fundo: purple; // criaçaõ de variável
+
+body {
+    background-color: $varivel_cor_fundo;
+}
+
+
+//Interpolação
+$classe: vermelho; // seletor de classe do html
+$cor: red;
+
+.#{$classe} {
+    // ATENÇÃO AO PONTO ANTES DO #, no caso de seleção de id seriam # seguidas
+    color: $cor;
+}
+
+//for
+//through e to. O to não conta o ultimo item (no caso o 3)
+@for $i from 1 through 3 {
+    .item-#{$i} {
+        // mesma coisa de seletor de classe .item-1, .item-2, .item-3, .item-...
+        background-color: green;
+        color: rgb(60, 255, 0);
+    }
+}
+
+// while
+$contador: 1;
+
+@while $contador <= 3 {
+    .item-#{$contador} {
+        background-color: orange; 
+    }
+    $contador: $contador + 1;
+}
+
+// each usado para percorrer e estilizar com listas
+$lista: green, yellow, red;
+
+$contador2: 1;
+
+@each $cor in $lista{
+    .item-#{$contador2} {
+        background-color: $cor; 
+    }
+    $contador2: $contador2 + 1;
+}
+
+// Funções
+$total: 12;
+@function largura-coluna($coluna){
+    @return percentage($coluna/$total);
+}
+
+$resultado: largura-coluna(6);
+
+
+@for $i from 1 through $total{
+    .col-#{$i}{
+        width: largura-coluna($i);
+        background-color: aqua;
+    }
+}
+
+/*
+Outras Funções 
+mix(green,orange,50%)
+darken(orange,50%)
+lighten(orange,40%)
+*/
+.alerta {
+  background: lighten(orange, 50%);
+  color: yellow;
+}
+
+@import 'importar';
+.import{
+    font-size: $variavel_para_importacao;
+}
+
+/*↑ aula 563 - 564 ↑*/  
+
+/*↓ aula 565 ↓*/  
+
+/*Mixin*/
+@mixin titulo($cor:white, $cor-bg:black) {
+  color: $cor;
+  background: $cor-bg;
+  padding: 10px 5px;
+}
+
+h1 {
+  @include titulo(green);
+}
+
+h2 {
+  @include titulo();
+}
+
+/*Herança*/
+/*Múltiplas diretivas*/
+.classe1 {
+  color: red;
+}
+.classe2 {
+  background: black;
+}
+.vermelho {
+  @extend .classe1;
+  @extend .classe2;
+}
+
+/*
+Encadeamento de diretivas
+Placeholders(%)
+*/
+%pai {
+  color: red;
+}
+%filho {
+  @extend %pai;
+  background: black;
+}
+.erro {
+  @extend %filho;
+  padding: 10px;
+  border:1px solid red;
+}
+
+/*Diretivas de controle*/
+$cor: yellow;
+@if($cor == green){
+  p{
+    color: $cor;
+  }
+}@else if($cor == red){
+  p{
+    color: $cor;
+  }
+}@else{
+  p{
+    color: black;
+  }
+}
+
+/*Diretivas de controle e Mixins*/
+@mixin tema($tema: padrao){
+  @if( $tema == natal ){
+    background: red;
+    color: white;
+  }@else if( $tema == blackfriday ){
+    background: black;
+    color: white;
+  }@else{
+    background: white;
+    color: black;
+  }
+}
+
+body {
+  @include tema;
+}
+
+/*
+#{$resultado} gera um comentario no css com o resultado da conta
+*/ 
+
+// a convenção dos arquivos .scss para .css  é feito pelo software Koala -> http://koala-app.com
