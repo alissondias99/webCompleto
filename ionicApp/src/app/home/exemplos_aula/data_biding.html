@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Meu app
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h1>Data binding (liagação de dados)</h1>
+
+  <h4>String interpolation</h4>
+
+  {{titulo}}
+
+  <h4>Property binding</h4>
+  <ion-card>
+    <ion-img [src]="imagemRandomica"></ion-img>
+  </ion-card>
+
+  <h4>Event biding</h4>
+
+  <ion-button (click)="acao()">Botão</ion-button>
+
+  <ion-item>
+	<ion-label position="stacked">Seu nome:</ion-label>
+	<ion-input (input)="atualiza()"></ion-input>
+  </ion-item>
+  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      Meu APP
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>
