@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <div id="teste"></div>
+        <script>
+
+            //destructuring assigment no contexto de arrays
+
+            /*
+            let frutas = ['Abacaxi', 'Uva', 'Pera', 'Mamão']
+            let a = frutas[1]
+            console.log(a)
+
+            let [ a, b ] = frutas //calchetes
+            let [ a, b, , c] = frutas
+            let [ a, b = 'Abacate', c, d, e = 'Banana'] = frutas
+
+            console.log(a, b, c, d, e)
+            */
+
+            let coisas = [['Abacaxi', 'Uva', 'Pera', 'Mamão'],['José', 'Maria']]
+            let [,[,x]] = coisas
+            console.log(x)
+            
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="teste">
+        <button onclick="acao()">seguir</button>
+        Resposta: <input type="text" id="resposta">
+    </div>
+
+    <script>
+        /*function* testeGenerator(){// é o * que transforma a função em um generator
+            console.log('Teste 1')
+            yield console.log('Teste 2') // executa só até aqui
+            console.log('Teste 3')
+        }
+
+        let meuGenerator = testeGenerator() // itera o objeto
+
+        meuGenerator.next()
+        meuGenerator.next() // executa o restante depois do yield**/
+
+        function* conversar() { 
+            let opcao = yield "E ai, tudo bem?"
+            opcao
+            
+
+            if(opcao.toLowerCase() == 'sim'){
+                yield 'Legal'
+            } else if(opcao.toLowerCase() == 'não' || opcao.toLowerCase() == 'nao'){
+                yield 'Que pena'
+            }
+        }
+
+        let conversa = conversar()
+        function acao() {
+
+            let resposta = document.getElementById('resposta').value
+
+            let iteracao = conversa.next(resposta)
+            console.log(iteracao)
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>

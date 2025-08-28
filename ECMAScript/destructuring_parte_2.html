@@ -1,0 +1,37 @@
+<html>
+    <body>
+        <div id="teste"></div>
+        <script>            
+            //destructuring assignment no contexto de objetos
+
+            let produto = {
+                descricao: 'Notebook',
+                preco: 2500,
+                detalhes: {
+                    fabricante: 'Abc',
+                    modelo: 'Xyz'
+                }
+            }
+
+            //token (arrays) => []
+            //token (objetos) => {}
+
+            //let { descricao, preco } = produto
+            //console.log(descricao, preco)
+
+            //nomear as variáveis com outros nomes
+            //let { descricao: d, preco: p } = produto
+            //console.log(d, p)
+
+            //valores default para lidar com atributos undefined
+            //let { descricao: d, preco: p = 0, desconto = 5 } = produto
+            //console.log(d, p, desconto)
+
+            //extrair atributos de objetos pertencentes a atributos do objeto
+            //let { descricao, detalhes: { fabricante, modelo } } = produto
+            //let { descricao, detalhes: { fabricante: f, modelo } } = produto
+            let { descricao, detalhes: { fabricante: f, modelo = 'Não informado' } } = produto
+            console.log(descricao, f, modelo)
+        </script>
+    </body>
+</html>
