@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        /* vazamento de memória
+        obj1 = {
+            nome: 'Alisson Dias',
+            ocupacao: 'Estudante'
+        }
+
+        obj2 = {
+            nome: 'Anna Silva',
+            ocupacao: 'Vendedora'
+        }
+
+        const objetos = [obj1, obj2];
+
+        console.log('Original');
+        objetos.map((value, index) => console.log(index, value));
+
+        //objetos[1].nome = 'João Brandão';
+        obj2 = null; // não muda a referencia do objeto no array objetos, mas altera o objeto em si => objeto fantasma, 
+
+        console.log("Resultado");
+        objetos.map((value, index) => console.log(index, value));
+        console.log(obj2)*/
+
+        obj1 = {
+            nome: 'Alisson Dias',
+            ocupacao: 'Estudante'
+        }
+
+        obj2 = {
+            nome: 'Anna Silva',
+            ocupacao: 'Vendedora'
+        }
+
+        const objetos = new WeakMap();
+        // não se pode percorrer um weakmap
+        objetos.set(obj1, 'Informações obj1');
+        objetos.set(obj2, 'Informações obj2');
+        // objetos de weakmap são fracamente referenciados, quer dizer que se forem removidos do contexto global do programa serão totalmente removidos (essa remoção depende do garbage collector do javaScript)
+
+        console.log(objetos);
+
+        obj1 = null; // remove da memória, mas só vai deixar de ser exebido depois do garbage collector ser executado no navegador
+
+        console.log(objetos);
+    </script>
+</body>
+</html>

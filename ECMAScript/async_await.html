@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let processoAssincrono = new Promise((resolve, reject) =>  {
+            setTimeout(() => resolve('Sucesso mo processo assíncrono'), 3000)
+        })
+
+        async function recuperarDados(){
+        //↑ a função pode agurdar outros processos antes de ser executada
+             await processoAssincrono.then(p => console.log(p)) // a função só sera executada depos do tempo do setTimeout
+
+            console.log('Processo Assincrono 1')
+
+            fetch('https://jsonplaceholder.typicode.com/comments')
+            .then(r => r.json())
+            .then(d => console.log(d))
+        }
+
+        recuperarDados()
+        console.log('Fim')
+    </script>
+</body>
+</html>

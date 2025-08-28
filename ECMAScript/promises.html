@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let promessa = new Promise((resolve, reject) => { // Promise = valor que pode estar disponível agora, no futuro ou nunca
+
+            //uma promisse pode ter três status
+            //peding(pendente): estado inicial 
+            try {
+
+                throw new Error('Erro')
+                setTimeout(() => {
+                    resolve('Concluído') // fullfield (realizado): secesso na operação
+                }, 3000)
+
+            } catch (e) {
+                setTimeout(() => {
+                    reject(e) // rejected (rejeitado): falha na operação
+                }, 3000)
+            }
+        })
+
+        console.log(promessa)
+        setTimeout(() => {
+            console.log(promessa)
+        }, 3000) 
+    </script>
+</body>
+
+</html>
