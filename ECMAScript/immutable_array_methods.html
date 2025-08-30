@@ -1,0 +1,23 @@
+<html>
+    <body></body>
+    <script>
+        const numeros = [5, 3, 2, 4, 1];
+
+        // toReversed (baseado no reverse)
+        //const arrayInvertido = numeros.reverse();
+        const arrayInvertido = numeros.toReversed();
+        console.log(numeros, arrayInvertido);
+
+        // toSorted (baseado no sort)
+        const arrayOrdenado = numeros.toSorted();
+        console.log(numeros, arrayOrdenado);
+
+        // toSpliced (baseado no splice)
+        const arrayFatiado = numeros.toSpliced(1, 3); // (início, fim) -> intervalo de valores a serem removidos
+        console.log(numeros, arrayFatiado);
+
+        // with (baseado na notação de colchetes)
+        const arrayAlteradoCom = numeros.with(2, 20); // (índice, valor)
+        console.log(numeros, arrayAlteradoCom);
+    </script>
+</html>

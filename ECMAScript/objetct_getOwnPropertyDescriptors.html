@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let objeto = {
+            nome: 'Alisson',
+            ocupacao: 'Estudante',
+            hobbies: [
+                { id: 1, hobby: 'Jogar' },
+                { id: 2, hobby: 'Ler' },
+            ],
+            pais: 'Brasil'
+        }
+
+        // descritores de propriedades
+        console.log(Object.getOwnPropertyDescriptors(objeto));
+
+        // Descritor writable: quando definido como false, indica que o valor da variávei não pode ser alterado
+
+        console.log('Descritor writable')
+        Object.defineProperty(objeto, 'nome', {
+            value: 'Alisson',
+            writable: false
+        }) // não pode mais ser alterado
+
+        objeto.nome = 'Jorge'
+        console.log(objeto.nome, '- não mudou');
+
+        // Descritor Enumerable: quando definido como false, a propriedade não é mais exebida em laços de repetição
+
+        console.log('Descritor Enumerable')
+        for(let prop in objeto){
+            console.log(prop, objeto[prop], '- todos aqui')
+        }
+
+        Object.defineProperty(objeto, 'hobbies',{
+            enumerable: false
+        })
+
+        Object.defineProperty(objeto, 'ocupacao',{
+            enumerable: false
+        })
+
+        for(let prop in objeto){
+            console.log(prop, objeto[prop], '- faltam 2')
+        } // as propriedades definas como enumerable: false não aparecem mais
+
+        // Descritor Condigurable: quando for false, os outros descritoes não podem mais ser alterados, com exceção de writable para false
+
+        Object.defineProperty(objeto, 'ocupacao',{
+            configurable: false
+        })
+
+        console.log(Object.getOwnPropertyDescriptors(objeto));
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+    <body></body>
+
+    <script>
+        
+        let teste1 = null || 'Valor a direita';
+        let teste2 = 0 || 'Valor a direita';
+        let teste3 = undefined || 'Valor a direita';
+        let teste4 = '' || 'Valor a direita';
+        let teste5 = 'Valor a esquerda' || 'Valor a direita';
+
+        console.log('1',teste1)
+        console.log('2',teste2)
+        console.log('3',teste3)
+        console.log('4',teste4)
+        console.log('5',teste5)
+
+        //--
+        console.log('-----')
+        //--
+        teste1 = null ?? 'Valor a direita';
+        teste2 = 0 ?? 'Valor a direita';
+        teste3 = undefined ?? 'Valor a direita';
+        teste4 = '' ?? 'Valor a direita';
+        teste5 = 'Valor a esquerda' ?? 'Valor a direita';
+
+
+        console.log('1',teste1)
+        console.log('2',teste2)
+        console.log('3',teste3)
+        console.log('4',teste4)
+        console.log('5',teste5)
+
+    </script>
+</html>
